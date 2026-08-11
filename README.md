@@ -103,6 +103,51 @@ Coverage report: `canvas-frontend/coverage/index.html`
 
 > Minimum coverage threshold: **70%** (lines / functions / branches / statements)
 
+### Load Testing with Artillery
+
+Script: `canvas-backend/src/test/java/org/example/canvasbackend/load/artillery-canvas.yml`
+
+#### Run load test (local)
+
+From the project root:
+
+```powershell
+$script = "canvas-backend/src/test/java/org/example/canvasbackend/load/artillery-canvas.yml"
+artillery run $script
+```
+
+#### Generate JSON + HTML report
+
+```powershell
+artillery run $script --output "artillery-result.json"
+artillery report "artillery-result.json" --output "artillery-report.html"
+```
+
+Open `artillery-report.html` in a browser to review latency, throughput, and error rates.
+
+#### Record run in Artillery Cloud (shareable dashboard)
+
+Set your API key in an environment variable (recommended):
+
+```powershell
+$env:ARTILLERY_API_KEY="<your_artillery_cloud_api_key>"
+artillery run $script --record --name "canvas-backend-load"
+```
+
+Alternative (pass key directly in the command):
+
+```powershell
+artillery run $script --record --name "canvas-backend-load" --key "xxxxx"
+```
+
+Optional (persist key for new terminals):
+
+```powershell
+setx ARTILLERY_API_KEY "<your_artillery_cloud_api_key>"
+```
+
+> Avoid passing API keys directly in command arguments in shared terminals/logs. Prefer `ARTILLERY_API_KEY`.
+
 ### Tech Stack
 
 | Layer     | Technology                                   |

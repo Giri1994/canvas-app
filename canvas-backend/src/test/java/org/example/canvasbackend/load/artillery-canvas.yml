@@ -1,0 +1,40 @@
+config:
+  target: "http://localhost:8080"
+  phases:
+    - duration: 60
+      arrivalRate: 5
+      rampTo: 30
+  defaults:
+    headers:
+      Content-Type: "application/json"
+
+scenarios:
+  - name: "canvas-flow"
+    flow:
+      - post:
+          url: "/api/canvas/create"
+          json:
+            width: 40
+            height: 20
+      - post:
+          url: "/api/canvas/line"
+          json:
+            x1: 1
+            y1: 2
+            x2: 20
+            y2: 2
+      - post:
+          url: "/api/canvas/rectangle"
+          json:
+            x1: 5
+            y1: 5
+            x2: 15
+            y2: 10
+      - post:
+          url: "/api/canvas/fill"
+          json:
+            x: 6
+            y: 6
+            color: "o"
+      - post:
+          url: "/api/canvas/quit"
