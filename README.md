@@ -17,11 +17,13 @@ A full-stack ASCII canvas drawing application with a **Spring Boot** backend and
 ## 🚀 One-command startup
 
 ### Windows
-```in Git bash
+
+```
+In Git bash:
 ./start.sh
 ```
-```bat
-in CMD:
+```
+In CMD:
 start.bat
 ```
 
